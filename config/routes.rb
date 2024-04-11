@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  devise_for :admins
+  devise_for :customers
   get 'post_lists/index'
   get 'post_lists/show'
   get 'homes/top'
