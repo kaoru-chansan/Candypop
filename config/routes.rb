@@ -27,8 +27,18 @@ scope module: :public do
   get 'post_lists/show'
   get 'homes/top'
   get 'homes/admout'
+  
+  resources :post_losts, only: [:index, :show]
 
-  resources :customers, only: [:show, :edit, :update, :index]
+  get 'customers/my_page', to: 'customers#show', as: 'customers_show'
+  get 'customers/information/edit', to: 'customers#edit', as: 'customers_edit'
+  patch 'customers/information', to: 'customers#update'
+  get 'customers/unsubscribe', to: 'customers#unsubscribe', as: 'customers_unsubscribe'
+  patch 'customers/withdraw', to: 'customers#withdraw'
+
+  # scope(path_names: { show: 'my_page', edit: 'information/edit', update: 'information' })
+  #   resources :customer, path: 'customers'
+
   get 'customers/unsubscribe'
 
   get 'posts/show'

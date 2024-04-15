@@ -1,2 +1,14 @@
 <h1>Public::Customers#show</h1>
 <p>Find me in app/views/public/customers/show.html.erb</p>
+
+<p><%= @customer.name %></p>
+
+<p><%= @customer.profile %></p>
+
+<p>フォロー</p>
+<p>フォロワー</p>
+<p>いいね</p>
+
+<div>
+  <%= link_to 'プロフィール編集', customers_edit_path %>
+</div>
