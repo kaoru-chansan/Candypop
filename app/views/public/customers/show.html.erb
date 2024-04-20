@@ -14,8 +14,11 @@
 <p>フォロワー</p>
 <p>いいね</p>
 
+
+<% unless @customer.guest_customer? %>
 <div>
   <%= link_to 'プロフィール編集', customers_edit_path(@customer.id) %>
 </div>
+<% end %>
 
 <%= link_to '退会する' , unsubscribe_path %>

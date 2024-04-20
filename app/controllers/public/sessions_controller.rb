@@ -26,6 +26,12 @@ class Public::SessionsController < Devise::SessionsController
   #   devise_parameter_sanitizer.permit(:sign_in, keys: [:attribute])
   # end
 
+  def guest_sign_in
+    customer = Customer.guest
+    sign_in customer
+    redirect_to customers_show_path(current_customer), notice: "guestuserでログインしました。"
+  end
+
   def after_sign_in_path_for(resource)
     customers_show_path(current_customer.id)
   end

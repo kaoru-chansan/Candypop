@@ -5,6 +5,9 @@ Rails.application.routes.draw do
   sessions: 'public/sessions'
   }
 
+  devise_scope :customer do
+    post "customers/guest_sign_in", to: "public/sessions#guest_sign_in"
+  end
   # devise_for :customers, skip: [:passwords], controllers: {
   # registrations: "public/registrations",
   # sessions: 'public/sessions'
@@ -24,6 +27,7 @@ Rails.application.routes.draw do
 scope module: :public do
   root to: 'homes#top'
   get 'homes/admout'
+
 
   resources :post_losts, only: [:index, :show]
 
