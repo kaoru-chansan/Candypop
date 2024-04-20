@@ -23,16 +23,13 @@ Rails.application.routes.draw do
 
 scope module: :public do
   root to: 'homes#top'
-  get 'post_lists/index'
-  get 'post_lists/show'
-  get 'homes/top'
   get 'homes/admout'
 
   resources :post_losts, only: [:index, :show]
 
   get 'customers/:id/my_page', to: 'customers#show', as: 'customers_show'
   get 'customers/information/:id/edit' => 'customers#edit', as: 'customers_edit'
-  patch 'customers/information', to: 'customers#update'
+  patch 'customers/information/:id/edit', to: 'customers#update'
   get 'customers/:id/unsubscribe', to: 'customers#unsubscribe', as: 'unsubscribe'
   patch 'customers/:id/withdraw', to: 'customers#withdraw', as: 'withdraw'
 
