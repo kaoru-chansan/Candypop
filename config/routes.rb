@@ -27,11 +27,12 @@ scope module: :public do
 
   resources :post_losts, only: [:index, :show]
 
-  get 'customers/:id/my_page', to: 'customers#show', as: 'customers_show'
-  get 'customers/information/:id/edit' => 'customers#edit', as: 'customers_edit'
-  patch 'customers/information/:id/edit', to: 'customers#update'
-  get 'customers/:id/unsubscribe', to: 'customers#unsubscribe', as: 'unsubscribe'
-  patch 'customers/:id/withdraw', to: 'customers#withdraw', as: 'withdraw'
+  get 'customers/my_page:id/', to: 'customers#show', as: 'customers_show'
+  get 'customers/information/edit:id/', to: 'customers#edit', as: 'customers_edit'
+  patch 'customers/information/edit:id/', to: 'customers#update'
+  get 'customers/unsubscribe:id/', to: 'customers#unsubscribe', as: 'unsubscribe'
+  patch 'customers/withdraw:id/', to: 'customers#withdraw', as: 'withdraw'
+
 
   # scope(path_names: { show: 'my_page', edit: 'information/edit', update: 'information' })
   #   resources :customer, path: 'customers'
