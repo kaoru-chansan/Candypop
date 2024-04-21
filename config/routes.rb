@@ -29,22 +29,16 @@ scope module: :public do
   get 'homes/admout'
 
 
-  resources :post_losts, only: [:index, :show]
+  # resources :post_lists, only: [:index, :show]
 
-  get 'customers/my_page:id/', to: 'customers#show', as: 'customers_show'
-  get 'customers/information/edit:id/', to: 'customers#edit', as: 'customers_edit'
-  patch 'customers/information/edit:id/', to: 'customers#update'
-  get 'customers/unsubscribe:id/', to: 'customers#unsubscribe', as: 'unsubscribe'
-  patch 'customers/withdraw:id/', to: 'customers#withdraw', as: 'withdraw'
+  get 'customers', to: 'customers#index', as: 'customers_index'
+  get 'customers/my_page/:id', to: 'customers#show', as: 'customers_show'
+  get 'customers/information/edit/:id', to: 'customers#edit', as: 'customers_edit'
+  patch 'customers/information/edit/:id', to: 'customers#update'
+  get 'customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'unsubscribe'
+  patch 'customers/withdraw/:id', to: 'customers#withdraw', as: 'withdraw'
 
-
-  # scope(path_names: { show: 'my_page', edit: 'information/edit', update: 'information' })
-  #   resources :customer, path: 'customers'
-
-  get 'posts/show'
-  get 'posts/edit'
-  get 'posts/new'
-  get 'posts/index'
+  resources :posts, only: [:new, :show, :edit, :index, :destroy]
 
   get 'relationships/followings'
   get 'relationships/followers'
