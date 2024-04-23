@@ -13,10 +13,11 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
     @post.save
-    redirect_to post_path(current_customer.id)
+    redirect_to posts_path(current_customer.id)
   end
 
   def index
+    @posts = Post.all
   end
 
   private
