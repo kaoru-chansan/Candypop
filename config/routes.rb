@@ -38,7 +38,7 @@ scope module: :public do
   get 'customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'unsubscribe'
   patch 'customers/withdraw/:id', to: 'customers#withdraw', as: 'withdraw'
 
-  resources :posts, only: [:new, :show, :edit, :index, :destroy]
+  resources :posts, only: [:new, :show, :edit, :index, :destroy, :create]
 
   get 'relationships/followings'
   get 'relationships/followers'
