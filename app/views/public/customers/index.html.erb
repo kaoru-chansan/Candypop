@@ -7,8 +7,8 @@
   <div>
     <%= image_tag post.get_post_image %>
     <p>投稿画像：<%= image_tag 'sample-author1.jpg' %></p>
-    <p>説明：<%= post_image.caption %></p>
+    <p>説明：<%= post.caption %></p>
     <p>ユーザー名：<%= post.customer.name %></p>
-    <p>ユーザー画像：<%= post.customer.customer_image %></p>
+
   </div>
 <% end %>
