@@ -5,7 +5,9 @@
 
 <% @posts.each do |post| %>
   <div>
+    <%= link_to post_path(post.id) do %>
     <%= image_tag post.get_post_image %>
+    <% end %>
     <p>投稿画像：<%= image_tag 'sample-author1.jpg' %></p>
     <p>説明：<%= post.caption %></p>
     <p>ユーザー名：<%= post.customer.name %></p>
