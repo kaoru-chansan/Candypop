@@ -6,7 +6,7 @@ class Customer < ApplicationRecord
 
   has_one_attached :customer_image
 
-  has_many :post_image, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   GUEST_CUSTOMER_EMAIL = "guest@example.com"
 

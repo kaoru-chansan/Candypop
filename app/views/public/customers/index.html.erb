@@ -3,14 +3,10 @@
 
 <h2>投稿履歴一覧</h2>
 
-<% @posts.each do |post| %>
-  <div>
-    <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_post_image %>
-    <% end %>
-    <p>投稿画像：<%= image_tag 'sample-author1.jpg' %></p>
+<% if @customer_posts.present? %>
+  <% @customer_posts.each do |post| %>
     <p>説明：<%= post.caption %></p>
-    <p>ユーザー名：<%= post.customer.name %></p>
-
-  </div>
+  <% end %>
+<% else %>
+  <p>投稿はありません。</p>
 <% end %>
