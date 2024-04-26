@@ -1,16 +1,21 @@
 class Public::CustomersController < ApplicationController
   before_action :authenticate_customer!
-  before_action :ensure_guest_user, only: [:edit]
+  before_action :ensure_guest_customer, only: [:edit]
 
   def index
   end
 
   def show
     @customer = Customer.find(params[:id])
+    @posts = @customer.posts
+    
   end
 
   def edit
     @customer = Customer.find(params[:id])
+    if @customer.id != current_customer.id || @customer.guest_customer?
+      redirect_to customers_show_path(@customer.id)
+    end
   end
 
   def update

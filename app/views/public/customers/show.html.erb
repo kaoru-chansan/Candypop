@@ -15,10 +15,28 @@
 <p>いいね</p>
 
 
-<% unless @customer.guest_customer? %>
+<% if @customer.id == current_customer.id && !@customer.guest_customer? %>
 <div>
   <%= link_to 'プロフィール編集', customers_edit_path(@customer.id) %>
+
+  <%= link_to '退会する' , unsubscribe_path %>
 </div>
 <% end %>
 
-<%= link_to '退会する' , unsubscribe_path %>
+
+
+<% @posts.each do |post| %>
+  <div>
+    <%= link_to post_path(post.id) do %>
+    <%= image_tag post.get_post_image %>
+    <p>説明：<%= post.caption %></p>
+    <% end %>
+
+   <%= link_to customers_show_path(post.id) do %>
+    <p>ユーザー名：<%= post.customer.name %></p>
+    <p>投稿ユーザー画像：<%= image_tag post.customer.get_customer_image(100,100) %></p>
+    <% end %>
+
+    <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
+  </div>
+<% end %>
