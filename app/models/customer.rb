@@ -5,8 +5,8 @@ class Customer < ApplicationRecord
          :recoverable, :rememberable, :validatable
 
   has_one_attached :customer_image
-
   has_many :posts, dependent: :destroy
+  has_many :favorites, dependent: :destroy
 
   GUEST_CUSTOMER_EMAIL = "guest@example.com"
 

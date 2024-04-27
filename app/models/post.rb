@@ -1,6 +1,7 @@
 class Post < ApplicationRecord
   has_one_attached :post_image
   belongs_to :customer
+  has_many :favorites, dependent: :destroy
 
   def get_post_image
     unless post_image.attached?
@@ -8,6 +9,11 @@ class Post < ApplicationRecord
       post_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     post_image
+  end
+
+
+  def favorited_by?(costomer)
+    favorites.exists?(customer_id: customer.id)
   end
 
 end
