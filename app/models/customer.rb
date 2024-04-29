@@ -8,6 +8,33 @@ class Customer < ApplicationRecord
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
 
+  # フォローしている関連付け
+  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+
+  # フォローされている関連付け
+  has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
+
+  # フォローしているユーザーを取得
+  has_many :followings, through: :active_relationships, source: :followed
+
+  # フォロワーを取得
+  has_many :followers, through: :passive_relationships, source: :follower
+
+  # 指定したユーザーをフォローする
+  def follow(customer)
+    active_relationships.create(followed_id: customer.id)
+  end
+
+  # 指定したユーザーのフォローを解除する
+  def unfollow(customer)
+    active_relationships.find_by(followed_id: customer.id).destroy
+  end
+
+  # 指定したユーザーをフォローしているかどうかを判定
+  def following?(customer)
+    followings.include?(customer)
+  end
+
   GUEST_CUSTOMER_EMAIL = "guest@example.com"
 
   def self.guest
