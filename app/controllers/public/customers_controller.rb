@@ -8,7 +8,18 @@ class Public::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
-    
+  end
+
+  def favorites
+    @costomer = Customer.find(params[:id])
+    if @customer
+      favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
+      @favorite_posts = Post.find(favorites)
+      @post = Post.find(params[:id])
+    else
+      # @customerがnilの場合の処理
+      redirect_to(customers_show_path, alert: 'ユーザーが見つかりませんでした')
+    end
   end
 
   def edit

@@ -7,7 +7,7 @@
     <%= image_tag post.get_post_image %>
     <% end %>
 
-    <%= link_to customers_index_path(post.id) do %>
+    <%= link_to post_path(post.id) do %>
     <p>説明：<%= post.caption %></p>
     <% end %>
 
@@ -19,21 +19,9 @@
     <p>投稿日：<%= post.created_at.strftime('%Y/%m/%d') %></p>
   </div>
 
-    <% if post.favorited_by?(current_customer) %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :delete do %>
-        ♥<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-    <% else %>
-    <p>
-      <%= link_to post_favorites_path(@post), method: :post do %>
-        ♡<%= @post.favorites.count %> いいね
-      <% end %>
-    </p>
-  <% end %>
-
-
+<td>
+  <%= render 'public/favorites/favorite', post: post %>
+</td>
 
 
 <% end %>

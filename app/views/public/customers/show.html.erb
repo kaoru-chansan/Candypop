@@ -12,7 +12,9 @@
 
 <p>フォロー</p>
 <p>フォロワー</p>
-<p>いいね</p>
+<p>
+  <%= link_to "いいね一覧", customers_favorites_path(current_customer) %>
+</p>
 
 
 <% if @customer.id == current_customer.id && !@customer.guest_customer? %>

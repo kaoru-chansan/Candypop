@@ -37,6 +37,7 @@ scope module: :public do
   patch 'customers/information/edit/:id', to: 'customers#update'
   get 'customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'unsubscribe'
   patch 'customers/withdraw/:id', to: 'customers#withdraw', as: 'withdraw'
+  get 'customers/favorites/:id', to: 'customers#favorites', as: 'customers_favorites'
 
   resources :posts, only: [:new, :show, :edit, :index, :destroy, :create, :update] do
     resource :favorites, only: [:create, :destroy]
