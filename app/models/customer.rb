@@ -7,6 +7,7 @@ class Customer < ApplicationRecord
   has_one_attached :customer_image
   has_many :posts, dependent: :destroy
   has_many :favorites, dependent: :destroy
+  has_many :post_comments, dependent: :destroy
 
   # フォローしている関連付け
   has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy

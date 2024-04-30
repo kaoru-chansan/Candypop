@@ -41,6 +41,7 @@ scope module: :public do
 
   resources :posts, only: [:new, :show, :edit, :index, :destroy, :create, :update] do
     resource :favorites, only: [:create, :destroy]
+    resource :post_comments, only: [:create]
   end
 
   get 'relationships/followings'
