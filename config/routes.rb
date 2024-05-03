@@ -38,14 +38,16 @@ scope module: :public do
   get 'customers/unsubscribe/:id', to: 'customers#unsubscribe', as: 'unsubscribe'
   patch 'customers/withdraw/:id', to: 'customers#withdraw', as: 'withdraw'
   get 'customers/:customer_id/favorites', to: 'customers#favorites', as: 'customers_favorites'
+  post 'customers/:customer_id/relationships', to: 'relationships#create', as: 'follow'
+  delete 'customers/:customer_id/relationships', to: 'relationships#destroy', as: 'unfollow'
+  get 'customers/:customer_id/relationships/followings', to: 'relationships#followings', as: 'followings'
+  get 'customers/:customer_id/relationships/followers', to: 'relationships#followers', as: 'followers'
 
   resources :posts, only: [:new, :show, :edit, :index, :destroy, :create, :update] do
     resource :favorites, only: [:create, :destroy]
     resources :post_comments, only: [:create, :destroy]
   end
 
-  get 'relationships/followings'
-  get 'relationships/followers'
 end
   # For details on the DSL available within this file, see https://guides.rubyonrails.org/routing.html
 end

@@ -10,25 +10,25 @@ class Customer < ApplicationRecord
   has_many :post_comments, dependent: :destroy
 
   # フォローしている関連付け
-  has_many :active_relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
+  has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
 
   # フォローされている関連付け
   has_many :passive_relationships, class_name: "Relationship", foreign_key: "followed_id", dependent: :destroy
 
   # フォローしているユーザーを取得
-  has_many :followings, through: :active_relationships, source: :followed
+  has_many :followings, through: :relationships, source: :followed
 
   # フォロワーを取得
   has_many :followers, through: :passive_relationships, source: :follower
 
   # 指定したユーザーをフォローする
-  def follow(customer)
-    active_relationships.create(followed_id: customer.id)
+  def follow(customer_id)
+    relationships.create(followed_id: customer_id)
   end
 
   # 指定したユーザーのフォローを解除する
-  def unfollow(customer)
-    active_relationships.find_by(followed_id: customer.id).destroy
+  def unfollow(customer_id)
+    relationships.find_by(followed_id: customer_id).destroy
   end
 
   # 指定したユーザーをフォローしているかどうかを判定
