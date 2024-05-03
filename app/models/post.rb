@@ -13,7 +13,7 @@ class Post < ApplicationRecord
   end
 
 
-  def favorited_by?(costomer)
+  def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end
 
