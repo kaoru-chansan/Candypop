@@ -1,7 +1,8 @@
-<% if customers.exists? %>
-  <% customers.each do |customer| %>
+<% if @customers.exists? %>
+  <% @customers.each do |customer| %>
     <table>
       <thead>
+        <tr><%= image_tag customer.get_customer_image(100,100) %></tr>
         <tr>
           <th>name</th>
           <th></th>
@@ -10,9 +11,13 @@
       </thead>
       <tbody>
         <tr>
-          <td><%= customer.name %></td>
-          <td>フォロー数: <%= customer.followings.count %></td>
-          <td>フォロワー数: <%= customer.followers.count %></td>
+          <td>
+            <%= link_to customers_show_path(customer.id) do %>
+            <%= customer.name %></td>
+
+            <% end %>
+          <td>フォロー数: <%= link_to customer.followings.count, followings_path(customer) %></td>
+          <td>フォロワー数: <%= link_to customer.followers.count, followers_path(customer) %></td>
         </tr>
       </tbody>
     </table>
@@ -20,3 +25,5 @@
 <% else %>
   <p>ユーザーはいません</p>
 <% end %>
+
+

@@ -11,7 +11,7 @@
     <p>説明：<%= post.caption %></p>
     <% end %>
 
-    <%= link_to customers_show_path(post.id) do %>
+    <%= link_to customers_show_path(post.customer.id) do %>
     <p>ユーザー名：<%= post.customer.name %></p>
     <p>投稿ユーザー画像：<%= image_tag post.customer.get_customer_image(100,100) %></p>
     <% end %>
