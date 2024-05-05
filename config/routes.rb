@@ -42,6 +42,7 @@ scope module: :public do
   delete 'customers/:customer_id/relationships', to: 'relationships#destroy', as: 'unfollow'
   get 'customers/:customer_id/relationships/followings', to: 'relationships#followings', as: 'followings'
   get 'customers/:customer_id/relationships/followers', to: 'relationships#followers', as: 'followers'
+  get "search", to: "searches#search_result", as: 'search'
 
   resources :posts, only: [:new, :show, :edit, :index, :destroy, :create, :update] do
     resource :favorites, only: [:create, :destroy]

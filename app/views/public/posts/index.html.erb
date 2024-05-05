@@ -1,6 +1,8 @@
 <h1>Public::Posts#index</h1>
 <p>Find me in app/views/public/posts/index.html.erb</p>
 
+<%= render 'public/searches/serche', serche: @range %>
+
 <% @posts.each do |post| %>
   <div>
     <%= link_to post_path(post.id) do %>

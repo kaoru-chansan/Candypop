@@ -36,6 +36,8 @@ class Customer < ApplicationRecord
     followings.include?(customer)
   end
 
+
+  #ゲストユーザー
   GUEST_CUSTOMER_EMAIL = "guest@example.com"
 
   def self.guest
@@ -55,5 +57,20 @@ class Customer < ApplicationRecord
       customer_image.attach(io: File.open(file_path), filename: 'default-image.jpg', content_type: 'image/jpeg')
     end
     customer_image.variant(resize: "#{width}x#{height}!").processed
+  end
+
+  #検索方法分岐
+  def self.looks(search, word)
+    if search == "perfect_match"
+      @customer = Customer.where("name LIKE?", "#{word}")
+    elsif search == "forward_match"
+      @customer = Customer.where("name LIKE?","#{word}%")
+    elsif search == "backward_match"
+      @customer = Customer.where("name LIKE?","%#{word}")
+    elsif search == "partial_match"
+      @customer = Customer.where("name LIKE?","%#{word}%")
+    else
+      @customer = Customer.all
+    end
   end
 end
