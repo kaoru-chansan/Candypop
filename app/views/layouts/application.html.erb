@@ -40,9 +40,14 @@
         <%= link_to "ログイン", new_customer_session_path %>
       </li>
     <% end %>
+
+    <% if customer_signed_in? %>
+      <%= render 'public/searches/serche', serche: @range %>
+    <% end %>
   </header>
     <%= yield %>
 
-    
+
+
   </body>
 </html>

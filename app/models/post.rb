@@ -18,14 +18,8 @@ class Post < ApplicationRecord
   end
 
  #検索方法分岐
-  def self.looks(search, word)
-    if search == "perfect_match"
-      @post = Post.where("caption LIKE?","#{word}")
-    elsif search == "forward_match"
-      @post = Post.where("caption LIKE?","#{word}%")
-    elsif search == "backward_match"
-      @post = Post.where("caption LIKE?","%#{word}")
-    elsif search == "partial_match"
+  def self.looks(word)
+    if word.present?
       @post = Post.where("caption LIKE?","%#{word}%")
     else
       @post = Post.all

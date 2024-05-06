@@ -5,9 +5,9 @@ class Public::SearchesController < ApplicationController
     @range = params[:range]
 
     if @range == "Customer"
-      @customers = Customer.looks(params[:search], params[:word])
+      @customers = Customer.looks(params[:word])
     else
-      @posts = Post.looks(params[:search], params[:word])
+      @posts = Post.looks(params[:word])
     end
   end
 
