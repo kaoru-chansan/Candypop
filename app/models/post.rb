@@ -20,9 +20,9 @@ class Post < ApplicationRecord
  #検索方法分岐
   def self.looks(word)
     if word.present?
-      @post = Post.where("caption LIKE?","%#{word}%")
+      Post.where("caption LIKE ?", "%#{word}%")
     else
-      @post = Post.all
+      Post.all
     end
   end
 

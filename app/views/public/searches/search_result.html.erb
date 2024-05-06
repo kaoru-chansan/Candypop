@@ -14,13 +14,6 @@
   <% else %>
 
     <!--検索対象モデルがcustomerではない時(= 検索対象モデルがpostの時) -->
-    <tbody>
-      <% @posts.each do |post| %>
-        <tr>
-          <td><%= post.caption %></td>
+    <%= render "public/posts/posts_list", posts: @posts %>
 
-        </tr>
-      <% end %>
-    </tbody>
   <% end %>
-</table>
