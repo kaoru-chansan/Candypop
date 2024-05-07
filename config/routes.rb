@@ -8,20 +8,14 @@ Rails.application.routes.draw do
   devise_scope :customer do
     post "customers/guest_sign_in", to: "public/sessions#guest_sign_in"
   end
-  # devise_for :customers, skip: [:passwords], controllers: {
-  # registrations: "public/registrations",
-  # sessions: 'public/sessions'
-  # }
 
-  devise_for :admin, controllers: {
+
+  devise_for :admin, skip: [:registrations, :password], controllers: {
   sessions: "admin/sessions"
   }
 
-
   namespace :admin do
-    get 'customers/index'
-    get 'customers/show'
-    get 'customers/edit'
+    resources :customer, only: [:index, :show, :edit]
   end
 
 scope module: :public do

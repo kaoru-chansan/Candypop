@@ -5,7 +5,7 @@
 <%= form_with url: customers_edit_path, model: @customer do |f| %>
 
 <h5>ユーザー画像</h5>
-後で
+<%= f.file_field :costomer_image, accept: "image/*" %>
 
 <h5>ユーザー名</h5>
 <%= f.text_field :name %>
