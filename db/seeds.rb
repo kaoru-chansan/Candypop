@@ -8,6 +8,5 @@
 
 Admin.create!(
   email: 'admin@a.com',
-  password: '@dminPW1',
-  name: 'admin'
+  password: '@dminPW1'
 )

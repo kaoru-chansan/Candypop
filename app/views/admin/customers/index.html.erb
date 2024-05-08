@@ -5,13 +5,9 @@
 <ul>
   <% @customers.each do |customer| %>
     <li>
-      <%= customer.name %> - <%= user.email %>
+      <%= customer.name %> - <%= customer.email %>
 
-      <%= if customer.is_active == true %>
-        有効
-      <% else %>
-        退会
-      <% end %>
+
     </li>
   <% end %>
 </ul>

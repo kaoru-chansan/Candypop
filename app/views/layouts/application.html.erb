@@ -47,7 +47,7 @@
 
     <% if admin_signed_in? %>
     <li>
-      <%= link_to 'カスタマー一覧', admin_customer_index_path %>
+      <%= link_to 'ユーザー一覧', admin_customers_path %>
     </li>
     <li>
       <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
