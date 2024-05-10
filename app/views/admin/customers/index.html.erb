@@ -1,13 +1,33 @@
 <h1>Admin::Customers#index</h1>
 <p>Find me in app/views/admin/customers/index.html.erb</p>
 
-<h1>全ユーザー一覧</h1>
-<ul>
-  <% @customers.each do |customer| %>
-    <li>
-      <%= customer.name %> - <%= customer.email %>
+<%= render 'public/searches/serche', serche: @range %>
 
+<div class="container">
+  <div class="row">
+    <h2>会員一覧</h2>
 
-    </li>
-  <% end %>
-</ul>
+      <table class="table">
+        <thead>
+        <tr>
+          <th>会員ID</th>
+          <th>名前</th>
+          <th>メールアドレス</th>
+          <th>ステータス</th>
+        </tr>
+      </thead>
+        <% @customers.each do |customer| %>
+          <tr>
+            <td><%= customer.id %></td>
+            <td>
+              <%= link_to admin_customer_path(customer.id) do %>
+              <%= customer.name %>
+              <% end %>
+            </td>
+            <td><%= customer.email %></td>
+           <td class="<%= !customer.is_active ? 'text-gray' : 'text-green' %>"><%= !customer.is_active ? '退会済み' : '有効' %></td>
+          </tr>
+        <% end %>
+      </table>
+    </div>
+  </div>

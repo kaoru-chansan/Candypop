@@ -1,2 +1,13 @@
 <h1>Admin::Customers#show</h1>
 <p>Find me in app/views/admin/customers/show.html.erb</p>
+
+<h5>ユーザー画像</h5>
+<p><%= image_tag @customer.get_customer_image(100,100) %></p>
+
+<h5>ユーザー名</h5>
+<p><%= @customer.name %></p>
+
+<h6>プロフィール</h6>
+<p><%= @customer.profile %></p>
+
+<%= render "public/posts/posts_list", posts: @posts %>
