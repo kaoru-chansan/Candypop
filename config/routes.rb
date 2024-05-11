@@ -18,6 +18,8 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit]
     patch 'customers/withdraw/:id', to: 'customers#withdraw', as: 'withdraw'
+    resources :posts, only: [:show, :destroy]
+
   end
 
 # 顧客

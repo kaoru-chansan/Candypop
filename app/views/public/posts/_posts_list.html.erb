@@ -1,5 +1,10 @@
 
 <% posts.each do |post| %>
+
+  <% if current_admin %>
+    <%= link_to "投稿削除", admin_post_path(post), method: :delete, class: "btn btn-danger" %>
+  <% end %>
+
   <div>
     <%= link_to post_path(post.id) do %>
     <%= image_tag post.get_post_image %>

@@ -13,9 +13,13 @@ class Post < ApplicationRecord
     post_image
   end
 
-  # お気に入り機能 
+  # お気に入り機能
   def favorited_by?(customer)
-    favorites.exists?(customer_id: customer.id)
+    if customer
+      favorites.exists?(customer_id: customer.id)
+    else
+      false
+    end
   end
 
  #検索方法分岐
