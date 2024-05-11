@@ -9,6 +9,7 @@ class Customer < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
+  # (フォロー機能）
   # フォローしている関連付け
   has_many :relationships, class_name: "Relationship", foreign_key: "follower_id", dependent: :destroy
 
@@ -51,6 +52,7 @@ class Customer < ApplicationRecord
     email == GUEST_CUSTOMER_EMAIL
   end
 
+  # 顧客画像
   def get_customer_image(width, height)
     unless customer_image.attached?
       file_path = Rails.root.join('app/assets/images/no_image.jpg')

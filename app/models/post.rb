@@ -4,6 +4,7 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
+# 投稿
   def get_post_image
     unless post_image.attached?
       file_path = Rails.root.join('app/assets/images/neko.jpg')
@@ -12,7 +13,7 @@ class Post < ApplicationRecord
     post_image
   end
 
-
+  # お気に入り機能 
   def favorited_by?(customer)
     favorites.exists?(customer_id: customer.id)
   end

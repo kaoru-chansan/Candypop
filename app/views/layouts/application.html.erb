@@ -50,13 +50,23 @@
       </li>
     <% end %>
 
+
+
+
+  </header>
+
+  <main>
+
+    <p id="notice"><%= flash[:notice] %></p>
+
+    <!--検索-->
     <% if customer_signed_in? || admin_signed_in? %>
       <%= render 'public/searches/serche', serche: @range %>
     <% end %>
 
-
-  </header>
     <%= yield %>
+  </main>
+
 
 
 

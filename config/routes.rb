@@ -14,15 +14,16 @@ Rails.application.routes.draw do
   sessions: "admin/sessions"
   }
 
+# 管理者
   namespace :admin do
     resources :customers, only: [:index, :show, :edit]
+    patch 'customers/withdraw/:id', to: 'customers#withdraw', as: 'withdraw'
   end
 
+# 顧客
 scope module: :public do
   root to: 'homes#top'
   get 'homes/admout'
-
-
   # resources :post_lists, only: [:index, :show]
 
   get 'customers', to: 'customers#index', as: 'customers_index'
