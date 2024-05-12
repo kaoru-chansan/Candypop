@@ -3,7 +3,7 @@
 
 <div>
   <%= link_to customers_show_path(current_customer.id) do %>
-  <%= image_tag @post.get_post_image %>
+  <%= image_tag @post.get_post_image(500,300) %>
   <p>説明：<%= @post.caption %></p>
   <p>投稿ユーザー画像：<%= image_tag @post.customer.get_customer_image(100,100) %></p>
   <p>ユーザーネーム：<%= @post.customer.name %></p>

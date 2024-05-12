@@ -16,10 +16,9 @@ Rails.application.routes.draw do
 
 # 管理者
   namespace :admin do
-    resources :customers, only: [:index, :show, :edit]
+    resources :customers, only: [:index, :show, :edit, :destroy]
     patch 'customers/withdraw/:id', to: 'customers#withdraw', as: 'withdraw'
-    resources :posts, only: [:show, :destroy]
-
+    resources :posts, only: [:show]
   end
 
 # 顧客

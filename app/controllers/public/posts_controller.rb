@@ -1,5 +1,5 @@
 class Public::PostsController < ApplicationController
-  before_action :authenticate_costomer!, except: :index
+  before_action :authenticate_customer!, except: :index
 
   def show
     @post = Post.find(params[:id])
@@ -25,7 +25,7 @@ class Public::PostsController < ApplicationController
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
     @post.save
-    redirect_to posts_path(current_customer.id)
+    redirect_to post_path(@post)
   end
 
   def index
