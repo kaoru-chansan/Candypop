@@ -1,9 +1,6 @@
 <h1>Public::Posts#show</h1>
 <p>Find me in app/views/public/posts/show.html.erb</p>
 
-
-
-
 <!--投稿内容-->
 <div>
   <%= link_to customers_show_path(@customer) do %>
@@ -23,6 +20,18 @@
 <!--投稿にコメントする-->
 <div>
   <p>コメント件数：<%= @post.post_comments.count %></p>
+  
+  <% if @error_comment.present? %>
+    <div id="error_explanation">
+      <h2><%= @error_comment.errors.count %>件のエラーが発生しました。</h2>
+      <ul>
+        <% @error_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+        <% end %>
+      </ul>
+    </div>
+  <% end %>
+  
   <% @post.post_comments.each do |post_comment| %>
     <p><%= image_tag post_comment.customer.get_customer_image(100,100) %></p>
     <%= post_comment.customer.name %>
