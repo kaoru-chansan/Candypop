@@ -5,17 +5,15 @@ class Public::PostCommentsController < ApplicationController
     comment = current_customer.post_comments.new(post_comment_params)
     comment.post_id = post.id
 
-
-
     if comment.save
-      flash[:notice]
-        redirect_to post_path(post)
+      flash[:notice] = "コメントしました。"
+      redirect_to post_path(post)
     else
-        @error_comment = comment
-        @post = Post.find(params[:post_id])
-        @customer = @post.customer
-        @post_comment = PostComment.new
-        render 'public/posts/show'
+      @error_comment = comment
+      @post = Post.find(params[:post_id])
+      @customer = @post.customer
+      @post_comment = PostComment.new
+      render 'public/posts/show'
     end
   end
 

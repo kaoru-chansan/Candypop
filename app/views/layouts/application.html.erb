@@ -13,45 +13,85 @@
 
   <body>
     <header>
-    <% if customer_signed_in? %>
-      <li>
-        <%= link_to "マイページ", customers_show_path(current_customer.id) %>
-      </li>
-      <li>
-        <%= link_to "新規投稿", new_post_path %>
-      </li>
+      <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+        <div class ="container">
+          <a class="navbar-brand" href="/">
+            <h2>Candypop</h2>
+          </a>
+          <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="true" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+          </button>
 
-      <li>
-        <%= link_to "投稿一覧", posts_path %>
-      </li>
+          <div class="navbar-collapse collapse show" id="navbarNavDropdown" style>
+            <ul class="navbar-nav ml-auto">
 
-      <li>
-        <%= link_to "ログアウト", destroy_customer_session_path, method: :delete %>
-      </li>
+            <% if customer_signed_in? %>
+              <li>
+                <%= link_to customers_show_path(current_customer.id), class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-home"></i>
+                   マイページ
+                <% end %>
+              </li>
 
-    <% elsif admin_signed_in? %>
-       <li>
-         <%= link_to 'ユーザー一覧', admin_customers_path %>
-       </li>
-       <li>
-         <%= link_to 'ログアウト', destroy_admin_session_path, method: :delete %>
-       </li>
+              <li>
+                <%= link_to new_post_path, class: 'nav-link text-light' do %>
+                <i class="fa-regular fa-pen-to-square"></i>
+                   新規投稿
+                <% end %>
+              </li>
 
-    <% else %>
-     <li>
-       <%= link_to "ゲストログイン（閲覧用）", customers_guest_sign_in_path, method: :post %>
-     </li>
+              <li>
+                <%= link_to posts_path, class: 'nav-link text-light' do  %>
+                <i class="fa-regular fa-rectangle-list"></i>
+                  投稿一覧
+                <% end %>
+              </li>
 
-      <li>
-        <%= link_to "新規登録", new_customer_registration_path %>
-      </li>
-      <li>
-        <%= link_to "ログイン", new_customer_session_path %>
-      </li>
-    <% end %>
+              <li>
+                <%= link_to destroy_customer_session_path, method: :delete, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-right-from-bracket"></i>
+                  ログアウト
+                <% end %>
+              </li>
 
+            <% elsif admin_signed_in? %>
+              <li>
+                <%= link_to admin_customers_path, class: 'nav-link text-light' do %>
+                <i class="fa-duotone fa-users"></i>
+                  ユーザー一覧
+                <% end %>
+              </li>
+              <li>
+                <%= link_to destroy_admin_session_path, method: :delete, class: 'nav-link text-light' do  %>
+                <i class="fa-light fa-right-from-bracket"></i>
+                  ログアウト
+                <% end %>
+              </li>
 
+            <% else %>
+              <li>
+                <%= link_to customers_guest_sign_in_path, method: :post, class: 'nav-link text-light' do %>
+                <i class="fa-sharp fa-regular fa-circle-user"></i>
+                  ゲストログイン(閲覧用)
+                <% end %>
+              </li>
 
+              <li>
+                <%= link_to new_customer_registration_path, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-user-plus"></i>
+                  新規登録
+                <% end %>
+              </li>
+              <li>
+                <%= link_to new_customer_session_path, class: 'nav-link text-light' do %>
+                <i class="fa-solid fa-door-open"></i>
+                  ログイン
+                <% end %>
+              </li>
+            <% end %>
+
+          </div>
+   </div>
 
   </header>
 
