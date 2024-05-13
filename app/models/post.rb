@@ -4,6 +4,9 @@ class Post < ApplicationRecord
   has_many :favorites, dependent: :destroy
   has_many :post_comments, dependent: :destroy
 
+  validates :post_image, presence: true
+  validates :caption, presence: true
+
 # 投稿
   def get_post_image(width, height)
     unless post_image.attached?

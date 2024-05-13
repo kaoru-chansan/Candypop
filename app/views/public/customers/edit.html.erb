@@ -1,5 +1,14 @@
 <h1>Public::Customers#edit</h1>
 
+<% if @customer.errors.any? %>
+  <%= @customer.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @customer.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h1>ユーザー情報編集</h1>
 
 <%= form_with url: customers_edit_path, model: @customer do |f| %>
@@ -15,9 +24,6 @@
 
 <h5>プロフィール</h5>
 <%= f.text_field :profile %>
-
-<h5>パスワード</h5>
-<%= f.password_field :password %>
 
 
 <%= f.submit '保存' %>

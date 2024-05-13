@@ -29,4 +29,9 @@ class Admin::CustomersController < ApplicationController
         redirect_to admin_customer_path
   end
 
+  private
+    def if_not_admin
+      redirect_to root_path unless current_customer.admin?
+    end
+
 end

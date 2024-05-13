@@ -57,7 +57,9 @@
 
   <main>
 
-    <p id="notice"><%= flash[:notice] %></p>
+    <% flash.each do |message_type, message| %>
+      <div class="flash-message <%= message_type %>"><%= message %></div>
+    <% end %>
 
     <!--検索-->
     <% if customer_signed_in? && admin_signed_in? %>

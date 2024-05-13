@@ -29,8 +29,13 @@ class Public::CustomersController < ApplicationController
 
   def update
      @customer = Customer.find(params[:id])
-     @customer.update(customer_params)
-     redirect_to customers_show_path(@customer.id)
+     if @customer.update(customer_params)
+       flash[:notice] = "編集に成功しました。"
+       redirect_to customers_show_path(@customer.id)
+     else
+       flash.now[:alert] = "編集に失敗しました。"
+       render :edit
+     end
   end
 
   def unsubscribe

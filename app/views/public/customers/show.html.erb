@@ -1,6 +1,7 @@
 <h1>Public::Customers#show</h1>
 <p>Find me in app/views/public/customers/show.html.erb</p>
 
+
 <% if current_customer != @customer %>
   <% if current_customer.following?(@customer) %>
     <%= link_to "フォロー解除", unfollow_path(@customer.id), method: :delete %>

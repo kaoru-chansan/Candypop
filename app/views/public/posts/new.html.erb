@@ -1,6 +1,17 @@
 <h1>Public::Posts#new</h1>
 <p>Find me in app/views/public/posts/new.html.erb</p>
 
+
+
+<% if @post.errors.any? %>
+  <%= @post.errors.count %>件のエラーが発生しました
+  <ul>
+    <% @post.errors.full_messages.each do |message| %>
+      <li><%= message %></li>
+    <% end %>
+  </ul>
+<% end %>
+
 <h2>新規投稿</h2>
 
 <%= form_with model: @post do |f| %>

@@ -24,12 +24,17 @@ class Public::PostsController < ApplicationController
   def create
     @post = Post.new(post_params)
     @post.customer_id = current_customer.id
-    @post.save
-    redirect_to post_path(@post)
+    if @post.save
+      flash[:notice] = "投稿に成功しました。"
+      redirect_to post_path(@post)
+    else
+      flash.now[:alert] = "投稿に失敗しました。"
+      render :new
+    end
   end
 
   def index
-    @posts = Post.all
+    @posts = Post.all.order(created_at: :desc)
   end
 
   def destroy
