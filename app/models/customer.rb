@@ -72,4 +72,9 @@ class Customer < ApplicationRecord
       @customers = Customer.all
     end
   end
+
+  def admin?
+    admin
+  end
+
 end
