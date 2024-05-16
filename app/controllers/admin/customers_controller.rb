@@ -11,12 +11,6 @@ class Admin::CustomersController < ApplicationController
     @posts = @customer.posts
   end
 
-  def destroy
-    customer = Customer.find(params[:id])
-    post = customer.posts.find(params[:id])
-    post.destroy
-    redirect_to admin_customer_path(customer), notice: '投稿を削除しました。'
-  end
 
   def withdraw
     @customer = Customer.find(params[:id])
