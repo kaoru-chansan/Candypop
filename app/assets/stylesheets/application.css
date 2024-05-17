@@ -14,6 +14,14 @@
  *= require_self
  */
 
+.sidebar_fixed {
+  position: sticky;
+  top: 60px;
+}
+.sidebar_content {
+  margin-bottom: 100px;
+}
+
 .flash-message {
   border-radius: 5px;
   padding: 16px 24px;
