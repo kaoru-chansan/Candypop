@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
 # 顧客
 scope module: :public do
+  
   root to: 'homes#top'
   get 'homes/admout'
   # resources :post_lists, only: [:index, :show]
@@ -40,6 +41,7 @@ scope module: :public do
   get 'customers/:customer_id/relationships/followings', to: 'relationships#followings', as: 'followings'
   get 'customers/:customer_id/relationships/followers', to: 'relationships#followers', as: 'followers'
   get "search", to: "searches#search_result", as: 'search'
+
 
   resources :posts, only: [:new, :show, :edit, :index, :destroy, :create, :update] do
     resource :favorites, only: [:create, :destroy]
