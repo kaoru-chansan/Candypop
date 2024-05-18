@@ -25,4 +25,26 @@
 <p><%= @customer.profile %></p>
 
 <!--顧客 投稿一覧-->
-<%= render "public/posts/posts_list", posts: @posts %>
+<% @posts.each do |post| %>
+
+  <% if current_admin %>
+    <%= link_to "投稿削除", admin_post_path(id: post.id), method: :delete, class: "btn btn-danger" %>
+  <% end %>
+
+  <div>
+
+    <%= image_tag post.get_post_image(500,300) %>
+    <p>説明：<%= post.caption %></p>
+    <p>ユーザー名：<%= post.customer.name %></p>
+    <p>投稿ユーザー画像：<%= image_tag post.customer.get_customer_image(100,100) %></p>
+    <p>投稿日：<%= post.created_at %></p>
+  </div>
+
+  <div>
+    <% post.post_comments.each do |post_comment| %>
+      <p><%= image_tag post_comment.customer.get_customer_image(100,100) %></p>
+      <%= post_comment.customer.name %>
+      <%= post_comment.created_at %><%= post_comment.comment %>
+    <% end %>
+  </div>
+<% end %>

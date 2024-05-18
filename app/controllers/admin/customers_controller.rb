@@ -9,6 +9,8 @@ class Admin::CustomersController < ApplicationController
   def show
     @customer = Customer.find(params[:id])
     @posts = @customer.posts
+    post_comments = PostComment.find(params[:id])
+    @post_comments = @posts.post_comments
   end
 
 
