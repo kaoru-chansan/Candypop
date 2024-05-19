@@ -42,7 +42,7 @@
 
   <div>
     <% post.post_comments.each do |post_comment| %>
-      <p><%= image_tag post_comment.customer.get_customer_image(100,100) %></p>
+      <p><%= image_tag post_comment.customer.get_customer_image(50,50) %></p>
       <%= post_comment.customer.name %>
       <%= post_comment.created_at %><%= post_comment.comment %>
     <% end %>
