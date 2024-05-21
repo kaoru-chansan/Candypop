@@ -1,54 +1,58 @@
 <div class="container">
   <div class="row">
-    <div class="col-7">
+    <div class="col-8">
 
-<% posts.each do |post| %>
+      <% posts.each do |post| %>
 
-    <!--<span class="p-1 border bs-border-color-translucen">-->
-    <div class="row align-items-center">
-    <div class="col-auto">
-    <%= image_tag post.customer.get_customer_image(50,50) %>
-    </div>
+        <div class="row p-2 border rounded border-secondary">
+          <div class="col-7">
 
-    <span class="col-1">
-    <%= link_to customers_show_path(post.customer.id) do %>
-    <%= post.customer.name %>
-    <% end %>
-    </span>
+            <div class="row align-items-center">
+              <div class="col-auto">
+                <%= image_tag post.customer.get_customer_image(50,50) %>
+              </div>
 
-    <div class="col-auto">
-    <%= post.created_at %>
-    </div>
-    </div>
+              <strong class="col-auto">
+                <%= link_to customers_show_path(post.customer.id) do %>
+                <%= post.customer.name %>
+                <% end %>
+              </strong>
 
-    <div class="row">
-      <div class="col-7">
-    <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_post_image(500,300) %>
-    <% end %>
-    </div>
+              <div class="col-auto">
+                <%= post.created_at %>
+              </div>
+            </div>
 
-    <div class="col-7">
-    <div class="text-wrap" style="width: 6rem;">
-    <%= link_to post_path(post.id) do %>
-    <p><%= post.caption %></p>
-    <% end %>
-    </div>
+            <div class="row">
+              <div class="col-7">
+                <%= link_to post_path(post.id) do %>
+                <%= image_tag post.get_post_image(500,300) %>
+                <% end %>
+              </div>
+
+              <div class="col-7">
+                <div class="text-wrap" style="width: 6rem;">
+                  <%= link_to post_path(post.id) do %>
+                  <%= post.caption %>
+                  <% end %>
+                </div>
+              </div>
+            </div>
+
+            <div class="row">
+              <div class="col-auto">
+                <%= render 'public/favorites/favorite', post: post %>
+              </div>
+
+              <div class="col-auto">
+                <%= link_to "💬#{post.post_comments.count} ", post_path(post.id) %>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      <% end %>
+
     </div>
   </div>
-
-  <div class="row">
-    <div class="col-auto">
-   <%= render 'public/favorites/favorite', post: post %>
-     </div>
-
-  <div class="col-auto">
-    <%= link_to "💬#{post.post_comments.count} ", post_path(post.id) %>
-  </div>
-  </div>
-  <!--</span>-->
-<% end %>
-
-</div>
-</div>
 </div>

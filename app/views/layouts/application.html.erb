@@ -107,6 +107,7 @@
     <% end %>
 
     <!--検索-->
+    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
     <% if customer_signed_in? %>
       <%= render 'public/searches/serche', serche: @range %>
     <% end %>
@@ -114,6 +115,7 @@
     <% if admin_signed_in? %>
       <%= render 'admin/searches/serche', serche: @range %>
     <% end %>
+    </div>
     <%= yield %>
 
     </div>
