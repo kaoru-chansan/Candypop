@@ -4,7 +4,7 @@
 
       <% posts.each do |post| %>
 
-        <div class="row p-2 border rounded border-secondary">
+        <div class="row p-2 border rounded border">
           <div class="col-7">
 
             <div class="row align-items-center">
@@ -45,7 +45,10 @@
               </div>
 
               <div class="col-auto">
-                <%= link_to "💬#{post.post_comments.count} ", post_path(post.id) %>
+                <%= link_to post_path(post.id) do %>
+                  <i class="fa-regular fa-comment"></i>
+                  <%= post.post_comments.count %>
+                <% end %>
               </div>
             </div>
 

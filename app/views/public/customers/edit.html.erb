@@ -1,33 +1,90 @@
-<h1>Public::Customers#edit</h1>
+<!--Public::Customers#edit-->
 
-<% if @customer.errors.any? %>
-  <%= @customer.errors.count %>件のエラーが発生しました
-  <ul>
-    <% @customer.errors.full_messages.each do |message| %>
-      <li><%= message %></li>
-    <% end %>
-  </ul>
-<% end %>
+<div class="container">
+  <div class="row">
+    <div class="col-auto">
+      <% if @customer.errors.any? %>
+        <div id="error_explanation">
+          <span class="text-danger">
+            <h5><%= @customer.errors.count %>件のエラーが発生しました</h5>
+          </span>
+          <ul>
+            <% @customer.errors.full_messages.each do |message| %>
+            <li><%= message %></li>
+            <% end %>
+          </ul>
+        </div>
+      <% end %>
+    </div>
+  </div>
 
-<h1>ユーザー情報編集</h1>
+  <div class="row">
+    <div class="col-8">
 
-<%= form_with url: customers_edit_path, model: @customer do |f| %>
-
-<h5>ユーザー画像</h5>
-<%= f.file_field :costomer_image, accept: "image/*" %>
-
-<h5>ユーザー名</h5>
-<%= f.text_field :name %>
-
-<h5>メールアドレス</h5>
-<%= f.email_field :email %>
-
-<h5>プロフィール</h5>
-<%= f.text_field :profile %>
-
-
-<%= f.submit '保存' %>
-
-<% end %>
+        <div class="row">
+          <div class="col-auto">
+            <h3>プロフィール編集</h3>
+          </div>
+        </div>
 
 
+      <%= form_with url: customers_edit_path, model: @customer do |f| %>
+        <div class="row">
+          <div class="col-auto">
+            プロフィール画像
+          </div>
+        </div>
+
+        <div class="row py-1">
+          <div class="col-auto">
+            <%= f.file_field :costomer_image, accept: "image/*" %>
+          </div>
+        </div>
+
+        <div class="row py-1">
+          <div class="col-auto">
+            ユーザー名
+          </div>
+        </div>
+
+        <div class="row py-1">
+          <div class="col-auto">
+            <%= f.text_field :name %>
+          </div>
+        </div>
+
+        <div class="row py-1">
+          <div class="col-auto">
+            メールアドレス
+          </div>
+        </div>
+
+        <div class="row py-1">
+          <div class="col-auto">
+            <%= f.email_field :email %>
+          </div>
+        </div>
+
+        <div class="row py-1">
+          <div class="col-auto">
+            プロフィール
+          </div>
+        </div>
+
+        <div class="row py-1">
+          <div class="col">
+            <%= f.text_area :profile %>
+          </div>
+        </div>
+
+        <div class="row py-1">
+          <div class="col-auto">
+            <%= f.submit '保存', class:"btn btn-md btn-block btn-info" %>
+          </div>
+
+        </div>
+
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -1,156 +1,154 @@
 <div class="container">
-  <div class="row text-align-center border-bottom">
-    <div class="col-4">
-      <%= link_to posts_path do %>
-      <i class="fa-solid fa-arrow-left text-secondary">戻る</i>
-      <% end %>
-      </div>
-      <!--投稿の編集と削除-->
+  <div class="row">
+    <div class="col-8">
 
-      <% if @post.customer == current_customer %>
-        <div class="col-auto">
-          <div class="btn-group mr-2" role="group" aria-label="First group">
-            <button type="button" class="btn btn-success">
-              <%= link_to edit_post_path(@post) do %>
-              <i class="fa-solid fa-eraser text-white">編集</i>
-
-              <% end %>
-            </button>
-          </div>
-        </div>
-
-        <div class="col-auto">
-          <div class="btn-group mr-2" role="group" aria-label="Second group">
-            <button type="button" class="btn btn-danger">
-            <%= link_to post_path(@post), method: :delete, "data-confirm" => "投稿の削除をしますか？" do %>
-            <i class="fa-regular fa-trash-can text-white">削除</i>
+        <div class="row py-2 text-align-center border-bottom">
+          <div class="col-4">
+            <%= link_to posts_path do %>
+            <i class="fa-solid fa-arrow-left text-secondary">戻る</i>
             <% end %>
-            </button>
           </div>
-        </div>
 
-    <% end %>
+      <!--投稿の編集と削除-->
+          <% if @post.customer == current_customer %>
+          <div class="col-auto">
+            <div class="btn-group mr-2" role="group" aria-label="First group">
+              <button type="button" class="btn btn-success">
+                <%= link_to edit_post_path(@post) do %>
+                <i class="fa-solid fa-eraser text-white">編集</i>
+                <% end %>
+              </button>
+            </div>
+          </div>
 
-    </div>
-  </div>
-
-<!--投稿内容-->
-  <%= link_to customers_show_path(@customer) do %>
-    <div class="row align-items-center">
-      <div class="col-auto">
-        <%= image_tag @post.customer.get_customer_image(50,50) %>
-      </div>
-
-      <strong class="col-auto">
-        <%= @post.customer.name %>
-      </strong>
-
-      <div class="col-auto">
-        <%= @post.created_at %>
-      </div>
-    </div>
-
-    <div class="row">
-      <div class="col-7">
-        <%= image_tag @post.get_post_image(500,300) %>
-      </div>
-
-      <div class="col-7">
-        <div class="text-wrap" style="width: 6rem;">
-          <p><%= @post.caption %></p>
-        </div>
-      </div>
-    </div>
-  <% end %>
-
-
-
-
-<!--お気に入りアクション-->
-  <div class="row">
-    <div class="col-auto">
-      <%= render 'public/favorites/favorite', post: @post %>
-   </div>
-
-<!--投稿にコメントする-->
-    <div class="col-auto">
-      <p>💬<%= @post.post_comments.count %></p>
-    </div>
-  </div>
-
-  <div class="row">
-    <div class="col-auto">
-    <% if @error_comment.present? %>
-        <div id="error_explanation">
-          <span class="text-danger">
-            <h5><%= @error_comment.errors.count %>件のエラーが発生しました。</h5>
-          </span>
-        <ul>
-          <% @error_comment.errors.full_messages.each do |message| %>
-            <li><%= message %></li>
+          <div class="col-auto">
+            <div class="btn-group mr-2" role="group" aria-label="Second group">
+              <button type="button" class="btn btn-danger">
+                <%= link_to post_path(@post), method: :delete, "data-confirm" => "投稿の削除をしますか？" do %>
+                <i class="fa-regular fa-trash-can text-white">削除</i>
+              <% end %>
+              </button>
+            </div>
+          </div>
           <% end %>
-        </ul>
-      </div>
-    <% end %>
-    </div>
-  </div>
+
+        </div>
 
 
-  <button class="btn btn-primary"
-    data-toggle="collapse"
-    data-target="#comments-1"
-    aria-expand="false"
-    aria-controls="comments-1">コメント一覧</button>
-
-  <div class="collapse" id="comments-1">
-    <div class="card card-body">
-      <% @post.post_comments.each do |post_comment| %>
+       <!--投稿内容-->
+        <%= link_to customers_show_path(@customer) do %>
         <div class="row align-items-center">
           <div class="col-auto">
-            <%= image_tag post_comment.customer.get_customer_image(50,50) %>
+            <%= image_tag @post.customer.get_customer_image(50,50) %>
           </div>
 
-
           <strong class="col-auto">
-            <%= post_comment.customer.name %>
+            <%= @post.customer.name %>
           </strong>
 
           <div class="col-auto">
-            <%= post_comment.created_at %>
+            <%= @post.created_at %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-7">
+            <%= image_tag @post.get_post_image(500,300) %>
           </div>
 
+          <div class="col-7">
+            <div class="text-wrap" style="width: 6rem;">
+              <%= @post.caption %>
+            </div>
+          </div>
+        </div>
+        <% end %>
+
+
+
+
+        <!--お気に入りアクション-->
+        <div class="row">
           <div class="col-auto">
-            <% if post_comment.customer == current_customer %>
-            <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'text-danger', "data-confirm" => "コメントの削除をしますか？" %>
+            <%= render 'public/favorites/favorite', post: @post %>
+          </div>
+
+        <!--投稿にコメントする-->
+          <div class="col-auto">
+            <i class="fa-regular fa-comment"></i>
+            <%= @post.post_comments.count %>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="col-auto">
+            <% if @error_comment.present? %>
+              <div id="error_explanation">
+                <span class="text-danger">
+                  <h5><%= @error_comment.errors.count %>件のエラーが発生しました。</h5>
+                </span>
+                <ul>
+                  <% @error_comment.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                  <% end %>
+                </ul>
+              </div>
             <% end %>
           </div>
         </div>
 
 
-        <div class="row border-bottom">
-          <div class="col-auto">
-            <%= post_comment.comment %>
+        <button class="btn btn-primary"
+          data-toggle="collapse"
+          data-target="#comments-1"
+          aria-expand="false"
+          aria-controls="comments-1">コメント一覧</button>
+
+        <div class="collapse" id="comments-1">
+          <div class="card card-body">
+            <% @post.post_comments.each do |post_comment| %>
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <%= image_tag post_comment.customer.get_customer_image(50,50) %>
+                </div>
+
+                <strong class="col-auto">
+                  <%= post_comment.customer.name %>
+                </strong>
+
+                <div class="col-auto">
+                  <%= post_comment.created_at %>
+                </div>
+
+                <div class="col-auto">
+                  <% if post_comment.customer == current_customer %>
+                    <%= link_to "削除", post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'text-danger', "data-confirm" => "コメントの削除をしますか？" %>
+                  <% end %>
+                </div>
+              </div>
+
+              <div class="row border-bottom">
+                <div class="col-auto">
+                  <%= post_comment.comment %>
+                </div>
+              </div>
+            <% end %>
           </div>
-
-
-
         </div>
-        <% end %>
-      </div>
-    </div>
 
-
-
-  <div class="row">
-    <div class="col-auto">
-      <div class="input-group mb-3">
-        <div class="comment_form">
-        <%= form_with model: [@post, @post_comment] do |f| %>
-        <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
+        <div class="row">
+          <div class="col-auto">
+            <div class="input-group mb-3">
+              <div class="comment_form">
+                <%= form_with model: [@post, @post_comment] do |f| %>
+                <%= f.text_area :comment, rows: '5', class: "form-control", placeholder: "コメントをここに" %>
+              </div>
+            </div>
+                <%= f.submit "送信する", class: "btn btn-primary" %>
+                <% end %>
+          </div>
         </div>
-      </div>
-        <%= f.submit "送信する", class: "btn btn-primary" %>
-        <% end %>
+    <!--col-8-->
     </div>
-
+  </div>
 </div>

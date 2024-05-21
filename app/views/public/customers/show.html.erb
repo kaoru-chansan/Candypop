@@ -59,7 +59,7 @@
           </div>
         </div>
 
-        <div class="row py-2 border-bottom">
+        <div class="row py-4">
           <div class="col-auto">
             <%= link_to followings_path(@customer.id) do %>
             フォロー
@@ -75,7 +75,7 @@
           </div>
 
           <div class="col-auto">
-            <%= link_to "いいね一覧", customers_favorites_path(current_customer) %>
+            <%= link_to "いいね", customers_favorites_path(current_customer) %>
           </div>
         </div>
   <!--col-9-->
