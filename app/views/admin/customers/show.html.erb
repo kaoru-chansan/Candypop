@@ -1,50 +1,144 @@
-<h1>Admin::Customers#show</h1>
-<p>Find me in app/views/admin/customers/show.html.erb</p>
+<!--<h1>Admin::Customers#show</h1>-->
+<!--<p>Find me in app/views/admin/customers/show.html.erb</p>-->
 
-<% link_to "戻る", admin_customers_path %>
+<div class="container">
+  <div class="row">
+    <div class="col-sm-10 col-lg-8">
 
-<th>会員ステータス</th>
-  <td>
-    <% if !@customer.is_active %>
-      退会済み
-      <%= link_to "有効にする", admin_withdraw_path(@customer.id), method: :patch, class: "btn btn-success" %>
-    <% else %>
-      有効
-      <%= link_to "退会させる", admin_withdraw_path(@customer.id), method: :patch, class: "btn btn-danger" %>
-    <% end %>
-  </td>
+      <div class="row py-2 text-align-center border-bottom">
+        <div class="col-lg-7">
+          <%= link_to admin_customers_path do %>
+          <i class="fa-solid fa-arrow-left text-secondary">戻る</i>
+          <% end %>
+        </div>
+      </div>
+
+      <div class="row py-3 text-align-center">
+        <div class="col-auto">
+          <strong>会員ステータス：</strong>
+        </div>
+
+        <% if !@customer.is_active %>
+          <div class="col-auto">
+            <span class="text-danger">退会済み</span>
+          </div>
+
+          <div class="col-auto">
+            <%= link_to "有効にする", admin_withdraw_path(@customer.id), method: :patch, class: "btn btn-success" %>
+          </div>
+        <% else %>
+          <div class="col-auto">
+            <span class="text-success">有効</span>
+          </div>
+
+          <div class="col-auto">
+            <%= link_to "退会させる", admin_withdraw_path(@customer.id), method: :patch, class: "btn btn-danger" %>
+          </div>
+        <% end %>
+      </div>
+
+      <div class="row">
+        <div class="col-4 text-center">
+          <h4><%= @customer.name %></h4>
+        </div>
+
+        <div class="col-5">
+          プロフィール
+        </div>
+      </div>
+
+      <div class="row py-2">
+        <div class="col-4">
+          <%= image_tag @customer.get_customer_image(200,200) %>
+        </div>
+
+        <div class="col-md-5 border rounded border-secondary">
+          <%= @customer.profile %>
+        </div>
+      </div>
 
 
-<h5>ユーザー画像</h5>
-<p><%= image_tag @customer.get_customer_image(100,100) %></p>
+      <!--顧客 投稿一覧-->
+      <% @posts.each do |post| %>
+      <div class="row p-2 border rounded border">
+        <div class="col-lg-7">
 
-<h5>ユーザー名</h5>
-<p><%= @customer.name %></p>
+          <div class="row align-items-center">
+            <div class="col-auto">
+              <%= image_tag post.customer.get_customer_image(50,50) %>
+            </div>
 
-<h6>プロフィール</h6>
-<p><%= @customer.profile %></p>
+            <strong class="col-auto">
+              <%= link_to customers_show_path(post.customer.id) do %>
+              <%= post.customer.name %>
+              <% end %>
+            </strong>
 
-<!--顧客 投稿一覧-->
-<% @posts.each do |post| %>
+            <div class="col-auto">
+              <%= post.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %>
+            </div>
 
-  <% if current_admin %>
-    <%= link_to "投稿削除", admin_post_path(id: post.id), method: :delete, class: "btn btn-danger" %>
-  <% end %>
+            <div class="col-auto">
+              <% if current_admin %>
+                <%= link_to "投稿削除", admin_post_path(id: post.id), method: :delete, class: "btn btn-danger" %>
+              <% end %>
+            </div>
+          </div>
 
-  <div>
+          <div class="row">
+            <div class="col-7">
+              <%= link_to post_path(post.id) do %>
+              <%= image_tag post.get_post_image(400,500) %>
+              <% end %>
+            </div>
 
-    <%= image_tag post.get_post_image(500,300) %>
-    <p>説明：<%= post.caption %></p>
-    <p>ユーザー名：<%= post.customer.name %></p>
-    <p>投稿ユーザー画像：<%= image_tag post.customer.get_customer_image(100,100) %></p>
-    <p>投稿日：<%= post.created_at %></p>
+            <div class="col-7">
+              <div class="text-wrap" style="width: 25rem;">
+                <%= link_to post_path(post.id) do %>
+                <%= post.caption %>
+                <% end %>
+              </div>
+            </div>
+          </div>
+
+          <button class="btn btn-primary"
+          data-toggle="collapse"
+          data-target="#comments-1"
+          aria-expand="false"
+          aria-controls="comments-1">コメント一覧</button>
+
+          <div class="collapse" id="comments-1">
+            <div class="card card-body">
+              <% post.post_comments.each do |post_comment| %>
+                <div class="row align-items-center border-bottom">
+                  <div class="col-7">
+                    <%= image_tag post_comment.customer.get_customer_image(50,50) %>
+                  </div>
+
+                  <strong class="col-auto">
+                    <%= post_comment.customer.name %>
+                  </strong>
+
+                  <div class="col-auto">
+                    <%= post_comment.created_at %>
+                  </div>
+
+                  <div class="col-auto">
+                    <%= post_comment.comment %>
+                  </div>
+
+                  <div>
+                    <% if current_admin %>
+                      <%= link_to "削除", admin_post_post_comment_path(post_comment.post, post_comment), method: :delete, class: 'text-danger', "data-confirm" => "コメントの削除をしますか？" %>
+                    <% end %>
+                  </div>
+                </div>
+              <% end %>
+            </div>
+          </div>
+        </div>
+      </div>
+      <% end %>
+    </div>
   </div>
-
-  <div>
-    <% post.post_comments.each do |post_comment| %>
-      <p><%= image_tag post_comment.customer.get_customer_image(50,50) %></p>
-      <%= post_comment.customer.name %>
-      <%= post_comment.created_at %><%= post_comment.comment %>
-    <% end %>
-  </div>
-<% end %>
+</div>

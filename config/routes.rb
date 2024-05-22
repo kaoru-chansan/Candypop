@@ -18,13 +18,15 @@ Rails.application.routes.draw do
   namespace :admin do
     resources :customers, only: [:index, :show, :edit, :destroy]
     patch 'customers/withdraw/:id', to: 'customers#withdraw', as: 'withdraw'
-    resources :posts, only: [:show, :destroy]
     get "search", to: "searches#search_result", as: 'search'
+    resources :posts, only: [:show, :destroy] do
+      resources :post_comments, only: [:destroy]
+    end
   end
 
 # 顧客
 scope module: :public do
-  
+
   root to: 'homes#top'
   get 'homes/admout'
   # resources :post_lists, only: [:index, :show]
