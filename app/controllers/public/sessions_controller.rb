@@ -51,6 +51,7 @@ class Public::SessionsController < Devise::SessionsController
     return unless customer.valid_password?(params[:customer][:password])
     # 【処理内容4】 アクティブでない会員に対する処理
     if !customer.is_active
+     flash[:notice] = "退会済みです。"
      redirect_to new_customer_registration_path
     else
       return

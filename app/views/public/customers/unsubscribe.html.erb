@@ -1,12 +1,38 @@
 <!--<h1>Public::Customers#unsubscribe</h1>-->
 <!--<p>Find me in app/views/public/customers/unsubscribe.html.erb</p>-->
+<div class="container">
+  <div class="row">
+    <div class="col-auto">
+      <h3>本当に退会しますか？</h3>
+    </div>
+  </div>
 
 
-<h3>本当に退会しますか？</h3>
- <p>
-   退会すると、会員登録情報や<br>
-   これまでの投稿履歴が閲覧できなくなります。<br>
-   退会する場合は、「退会する」をクリックしてください。
- </p>
-  <%= link_to "退会しない", customers_show_path(current_customer.id) %>
-  <%= link_to "退会する", withdraw_path, method: :patch, data: { confilm: "本当に退会しますか？" } %>
+  <div class="row">
+    <div class="col-auto">
+      <p>
+       退会すると、会員登録情報や<br>
+       これまでの投稿履歴が閲覧できなくなります。<br>
+       退会する場合は、「退会する」をクリックしてください。
+      </p>
+    </div>
+  </div>
+
+  <div class="row">
+    <div class="col-auto">
+      <div class="btn-group mr-2" role="group" aria-label="First group">
+        <button type="button" class="btn btn-success">
+          <%= link_to "退会しない", customers_show_path(current_customer.id), class: 'text-white' %>
+        </button>
+      </div>
+    </div>
+
+    <div class="col-auto">
+      <div class="btn-group mr-2" role="group" aria-label="Second group">
+        <button type="button" class="btn btn-danger">
+          <%= link_to "退会する", withdraw_path, method: :patch, class: 'text-white', data: { confilm: "本当に退会しますか？" } %>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
