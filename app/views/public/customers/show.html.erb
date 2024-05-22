@@ -2,13 +2,19 @@
   <div class="row">
     <div class="col-auto">
 
+
       <% if current_customer != @customer %>
         <% if current_customer.following?(@customer) %>
-          <%= link_to "フォロー解除", unfollow_path(@customer.id), method: :delete %>
+          <%= link_to unfollow_path(@customer.id), class: 'btn btn-info', method: :delete do %>
+          フォロー解除
+          <% end %>
         <% else %>
-          <%= link_to "フォローする", follow_path(@customer.id), method: :post %>
+          <%= link_to follow_path(@customer.id), class: 'btn btn-success', method: :post do%>
+          フォローする
+          <% end %>
         <% end %>
       <% end %>
+
     </div>
   </div>
 
