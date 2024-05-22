@@ -1,17 +1,34 @@
-<table class="table table-hover table-inverse">
-  <!--検索対象モデルがcustomerの時 -->
-  <% if @range == "Customer" %>
-    <tbody>
-      <% @customers.each do |customer| %>
-        <tr><%= image_tag customer.get_customer_image(100,100) %></tr>
-        <tr>
-          <td><%= customer.name %></td>
-        </tr>
-      <% end %>
-    </tbody>
-  <% else %>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+      <!--検索対象モデルがcustomerの時 -->
+      <% if @range == "Customer" %>
+        <% @customers.each do |customer| %>
+          <table class="table">
+            <thead>
+              <tr>
+               <th>イメージ</th>
+               <th>ユーザー名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= image_tag customer.get_customer_image(50,50) %></td>
+                <td>
+                  <%= link_to customers_show_path(customer.id) do %>
+                  <%= customer.name %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
 
-    <!--検索対象モデルがcustomerではない時(= 検索対象モデルがpostの時) -->
-    <%= render "public/posts/posts_list", posts: @posts %>
 
-  <% end %>
+<% else %>
+  <!--検索対象モデルがcustomerではない時(= 検索対象モデルがpostの時) -->
+  <%= render "public/posts/posts_list", posts: @posts %>
+<% end %>
+
+    </div>
+  </div>
+</div>

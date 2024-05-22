@@ -1,29 +1,37 @@
-<% if target_customers.exists? %>
-  <% target_customers.each do |customer| %>
-    <table>
-      <thead>
-        <tr><%= image_tag customer.get_customer_image(100,100) %></tr>
-        <tr>
-          <th>name</th>
-          <th></th>
-          <th></th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>
-            <%= link_to customers_show_path(customer.id) do %>
-            <%= customer.name %></td>
+<div class="container">
+  <div class="row py-2 text-align-center border-bottom">
+    <div class="col-8">
+       <%= link_to customers_show_path(customer.id) do %>
+       <i class="fa-solid fa-arrow-left text-secondary">戻る</i>
+       <% end %>
+    </div>
+  </div>
 
-            <% end %>
-          <td>フォロー数: <%= link_to customer.followings.count, followings_path(customer) %></td>
-          <td>フォロワー数: <%= link_to customer.followers.count, followers_path(customer) %></td>
-        </tr>
-      </tbody>
-    </table>
-  <% end %>
-<% else %>
-  <p>ユーザーはいません</p>
-<% end %>
-
-<%= link_to "戻る", customers_show_path(customer.id) %>
+  <div class="row">
+    <div class="co1-8">
+      <% if target_customers.exists? %>
+        <% target_customers.each do |customer| %>
+          <table class="table">
+            <thead>
+              <tr>
+                <th>イメージ</th>
+                <th>ユーザー名</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr>
+                <td><%= image_tag customer.get_customer_image(50,50) %></td>
+                <td>
+                  <%= link_to customers_show_path(customer.id) do %>
+                  <%= customer.name %>
+                  <% end %>
+                </td>
+              </tr>
+            </tbody>
+          <% end %>
+        <% else %>
+          <p>ユーザーはいません</p>
+      <% end %>
+   </div>
+  </div>
+</div>

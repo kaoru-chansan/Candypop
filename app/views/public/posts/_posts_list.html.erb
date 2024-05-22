@@ -26,12 +26,12 @@
             <div class="row">
               <div class="col-7">
                 <%= link_to post_path(post.id) do %>
-                <%= image_tag post.get_post_image(500,300) %>
+                <%= image_tag post.get_post_image(400,500) %>
                 <% end %>
               </div>
 
               <div class="col-7">
-                <div class="text-wrap" style="width: 6rem;">
+                <div class="text-wrap" style="width: 25rem;">
                   <%= link_to post_path(post.id) do %>
                   <%= post.caption %>
                   <% end %>
