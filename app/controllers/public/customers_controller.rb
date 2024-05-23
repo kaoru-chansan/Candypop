@@ -3,8 +3,6 @@ class Public::CustomersController < ApplicationController
   before_action :ensure_guest_customer, only: [:edit]
   before_action :is_matching_login_customer, only: [:edit]
 
-  def index
-  end
 
   def show
     @customer = Customer.find(params[:id])
