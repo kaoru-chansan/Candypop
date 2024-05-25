@@ -32,6 +32,6 @@
 - IDE：Cloud9
 ​
 ## 使用素材
-- フリー画像素材として以下を使用  
-　　〇 photoAC(https://www.photo-ac.com/main/search?q=%E9%A3%B4%E7%8E%89&qt=&p=1&pt=C)  
-    〇 Frame illust(https://frame-illust.com/?cat=170)  
+- フリー画像素材として以下を使用
+    〇 photoAC(https://www.photo-ac.com/main/search?q=%E9%A3%B4%E7%8E%89&qt=&p=1&pt=C)
+    〇 Frame illust(https://frame-illust.com/?cat=170)
