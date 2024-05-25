@@ -10,13 +10,10 @@
           </div>
         </div>
 
-
-
-
         <% if @customer.favorites.exists? %>
-　        <% @favorite_posts.each do |post| %>
+          <% @favorite_posts.each do |post| %>
 
-　        <div class="row p-2 border rounded border">
+          <div class="row p-2 border rounded border">
             <div class="col-10">
 
               <%= link_to customers_show_path(post.customer.id) do %>

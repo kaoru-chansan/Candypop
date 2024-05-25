@@ -1,9 +1,8 @@
-<div class="container">
-  <div class="row">
-    <div class="col-8">
-      <!--検索対象モデルがcustomerの時 -->
-      <% if @range == "Customer" %>
-        <% @customers.each do |customer| %>
+<!--検索対象モデルがcustomerの時 -->
+  <% if @range == "Customer" %>
+    <% @customers.each do |customer| %>
+      <div class="row">
+        <div class="col-8">
           <table class="table">
             <thead>
               <tr>
@@ -22,12 +21,10 @@
               </tr>
             </tbody>
           <% end %>
-
-
-      <% else %>
-        <!--検索対象モデルがcustomerではない時(= 検索対象モデルがpostの時) -->
-        <%= render "public/posts/posts_list", posts: @posts %>
-      <% end %>
-    </div>
-  </div>
-</div>
+        </div>
+      </div>
+    </table>
+  <% else %>
+    <!--検索対象モデルがcustomerではない時(= 検索対象モデルがpostの時) -->
+    <%= render "public/posts/posts_list", posts: @posts %>
+<% end %>

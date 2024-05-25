@@ -16,7 +16,7 @@ class Public::CustomersController < ApplicationController
     @customer = Customer.find(params[:customer_id])
     if @customer
       favorites = Favorite.where(customer_id: @customer.id).pluck(:post_id)
-      @favorite_posts = Post.find(favorites)
+      @favorite_posts = Post.find(favorites).select { _1.customer.is_active == true }
     else
       flash[:alert] = "お気に入り処理に失敗しました。"
       redirect_to　customers_show_path

@@ -9,7 +9,7 @@
 
   <div class="row">
     <div class="col-8">
-      <% if target_customers.exists? %>
+      <% if target_customers.present? %>
         <% target_customers.each do |customer| %>
           <table class="table">
             <thead>
