@@ -15,9 +15,6 @@
     <header class="navbar sticky-top bg-dark flex-md-nowrap p-0 shadow" data-bs-theme="dark" style>
       <a class="navbar-brand col-md-3 col-lg-2 me-0 px-3 fs-6 text-white" href="/">Candy pop</a>
     </header>
-  <!--<nav class="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">-->
-  <!--  <a class="navbar-brand col-sm-3 col-md-2 mr-0" href="/">Candy pop</a>-->
-  <!--</nav>-->
 
   <div class="container-fluid">
     <div class="row">
@@ -91,39 +88,32 @@
                 <% end %>
                 </li>
               <% end %>
-　      　    </a>
+　      　</div>
+　      </nav>
 
-　      　    </div>
-　      　  </nav>
+      <main role="main" class="col-md-8 ml-sm-auto col-lg-9 px-4">
+        <div class="col">
 
+          <% flash.each do |message_type, message| %>
+            <div class="flash-message <%= message_type %>"><%= message %></div>
+          <% end %>
 
-  <main role="main" class="col-md-8 ml-sm-auto col-lg-9 px-4">
+          <!--検索-->
+          <div class="d-flex justify-content-center flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
+            <% if customer_signed_in? %>
+              <%= render 'public/searches/serche', serche: @range %>
+            <% end %>
 
+            <% if admin_signed_in? %>
+              <%= render 'admin/searches/serche', serche: @range %>
+            <% end %>
+          </div>
 
-<div class="col">
-
-    <% flash.each do |message_type, message| %>
-      <div class="flash-message <%= message_type %>"><%= message %></div>
-    <% end %>
-
-    <!--検索-->
-    <div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <% if customer_signed_in? %>
-      <%= render 'public/searches/serche', serche: @range %>
-    <% end %>
-
-    <% if admin_signed_in? %>
-      <%= render 'admin/searches/serche', serche: @range %>
-    <% end %>
-    </div>
-    <%= yield %>
-
-    </div>
-  </main>
-
-　</div>
-</dev>
-
+          <%= yield %>
+        </div>
+      </main>
+　  </div>
+  </dev>
 
   </body>
 </html>
