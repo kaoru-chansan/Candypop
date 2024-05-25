@@ -34,12 +34,4 @@ class Post < ApplicationRecord
     end
   end
 
-
-  # after_destroy :delete_associated_comments_and_post
-
-  # def delete_associated_comments_and_post
-  #   PostComment.where(post_id: self.id).destroy_all
-  #   self.destroy
-  # end
-
 end

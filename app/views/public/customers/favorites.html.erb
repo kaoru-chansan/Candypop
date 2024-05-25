@@ -1,31 +1,62 @@
-<%= link_to "戻る", customers_show_path(@customer) %>
+<div class="container">
+  <div class="row">
+    <div class="col-8">
+
+        <div class="row py-2 text-align-center border-bottom">
+          <div class="col-auto">
+            <%= link_to customers_show_path(@customer) do %>
+            <i class="fa-solid fa-arrow-left text-secondary">戻る</i>
+            <% end %>
+          </div>
+        </div>
 
 
-<table class="table">
-  <% if @customer.favorites.exists? %>
-        <tbody>
-          <% @favorite_posts.each do |post| %>
 
-            <div>
-    <%= link_to post_path(post.id) do %>
-    <%= image_tag post.get_post_image(500,300) %>
-    <% end %>
 
-    <%= link_to post_path(post.id) do %>
-    <p>説明：<%= post.caption %></p>
-    <% end %>
+        <% if @customer.favorites.exists? %>
+　        <% @favorite_posts.each do |post| %>
 
-    <%= link_to customers_show_path(post.customer.id) do %>
-    <p>ユーザー名：<%= post.customer.name %></p>
-    <p>投稿ユーザー画像：<%= image_tag post.customer.get_customer_image(100,100) %></p>
-    <% end %>
+　        <div class="row p-2 border rounded border">
+            <div class="col-10">
 
-    <p>投稿日：<%= post.created_at %></p>
+              <%= link_to customers_show_path(post.customer.id) do %>
+              <div class="row align-items-center">
+                <div class="col-auto">
+                  <%= image_tag post.customer.get_customer_image(50,50) %>
+                </div>
+
+                <strong class="col-auto">
+                  <%= post.customer.name %>
+                </strong>
+
+                <div class="col-auto">
+                  <%= post.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %>
+                </div>
+              </div>
+              <% end %>
+
+              <%= link_to post_path(post.id) do %>
+              <div class="row">
+                <div class="col-7">
+                  <%= image_tag post.get_post_image(400,500) %>
+                </div>
+
+                <div class="col-7">
+                  <div class="text-wrap" style="width: 25rem;">
+                    <%= post.caption %>
+                  </div>
+                </div>
+              </div>
+              <% end %>
+
+            </div>
+          </div>
+          <% end %>
+
+        <% else %>
+          お気に入り登録がありませんでした
+      <% end %>
+
+    </div>
   </div>
-
-   <% end %>
-  <% else %>
-  <p>お気に入り登録がありませんでした</p>
-<% end %>
-
-
+</div>

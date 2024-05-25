@@ -5,39 +5,37 @@
       <% posts.each do |post| %>
 
         <div class="row p-2 border rounded border">
-          <div class="col-7">
+          <div class="col-10">
 
+            <%= link_to customers_show_path(post.customer.id) do %>
             <div class="row align-items-center">
               <div class="col-auto">
                 <%= image_tag post.customer.get_customer_image(50,50) %>
               </div>
 
               <strong class="col-auto">
-                <%= link_to customers_show_path(post.customer.id) do %>
                 <%= post.customer.name %>
-                <% end %>
               </strong>
 
               <div class="col-auto">
                 <%= post.created_at.strftime("%Y年%-m月%-d日 %-H時%-M分") %>
               </div>
             </div>
+            <% end %>
 
+            <%= link_to post_path(post.id) do %>
             <div class="row">
               <div class="col-7">
-                <%= link_to post_path(post.id) do %>
                 <%= image_tag post.get_post_image(400,500) %>
-                <% end %>
               </div>
 
               <div class="col-7">
                 <div class="text-wrap" style="width: 25rem;">
-                  <%= link_to post_path(post.id) do %>
                   <%= post.caption %>
-                  <% end %>
                 </div>
               </div>
             </div>
+            <% end %>
 
             <div class="row">
               <div class="col-auto">

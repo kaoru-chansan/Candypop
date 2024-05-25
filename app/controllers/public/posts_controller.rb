@@ -4,6 +4,9 @@ class Public::PostsController < ApplicationController
   def show
     @post = Post.find(params[:id])
     @customer = @post.customer
+    if @customer.is_active == false
+      redirect_to customers_show_path(current_customer)
+    end
     @post_comment = PostComment.new
   end
 
@@ -40,7 +43,7 @@ class Public::PostsController < ApplicationController
   end
 
   def index
-    @posts = Post.all.order(created_at: :desc)
+    @posts = Post.all.joins(:customer).where(customer: {is_active: true}).order("posts.created_at DESC")
   end
 
   def destroy

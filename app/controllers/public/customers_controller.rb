@@ -6,7 +6,10 @@ class Public::CustomersController < ApplicationController
 
   def show
     @customer = Customer.find(params[:id])
-    @posts = @customer.posts
+    if @customer.is_active == false
+      redirect_to customers_show_path(current_customer)
+    end
+    @posts = @customer.posts.order(created_at: :desc)
   end
 
   def favorites
