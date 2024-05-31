@@ -25,6 +25,11 @@ class Post < ApplicationRecord
     end
   end
 
+　#退会者のコメント非表示
+  def comment_by_not_deleted_user_count
+    post_comments.joins(:customer).where(customer: {is_active: true}).count
+  end
+
  #検索方法分岐
   def self.looks(word)
     if word.present?
