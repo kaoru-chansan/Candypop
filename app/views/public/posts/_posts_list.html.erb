@@ -45,6 +45,7 @@
               <div class="col-auto">
                 <%= link_to post_path(post.id) do %>
                   <i class="fa-regular fa-comment"></i>
+                  <%= post.post_comments.count %>
                   <%= post.comment_by_not_deleted_user_count %>
                 <% end %>
               </div>
